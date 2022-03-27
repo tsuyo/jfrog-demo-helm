@@ -1,0 +1,17 @@
+artifactory: artifactory
+pipelines:
+  name: jfrog_demo_helm
+gitRepo:
+  name: jfrog_demo_helm_gitrepo
+  provider: github
+  path: tsuyo/jfrog-demo-helm
+  files:
+    include: jfrog-demo-chart/.+
+artifactoryRepo:
+  deployer:
+    name: demo-helm
+helm:
+  chart:
+    name: jfrog-demo
+    version: 0.0.1
+    path: ./jfrog-demo-chart

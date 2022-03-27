@@ -1,0 +1,40 @@
+template: true
+valuesFilePath: ./values-helm.yml
+
+resources:
+  - name: {{ .Values.gitRepo.name }}
+    type: GitRepo
+    configuration:
+      gitProvider: {{ .Values.gitRepo.provider }}
+      path: {{ .Values.gitRepo.path }}
+      files:
+        include: {{ .Values.gitRepo.files.include }}
+
+  - name: "{{ .Values.pipelines.name }}_chart"
+    type: HelmChart
+    configuration:
+      sourceArtifactory: {{ .Values.artifactory }}
+      repository: {{ .Values.artifactoryRepo.deployer.name }}
+      chart: {{ .Values.helm.chart.name }}
+      version: {{ .Values.helm.chart.version }}
+
+  - name: {{ .Values.pipelines.name }}
+    type: BuildInfo
+    configuration:
+      sourceArtifactory: {{ .Values.artifactory }}      
+      
+pipelines:
+  - name: {{ .Values.pipelines.name }}
+    steps:
+      - name: helm_publish
+        type: HelmPublish
+        configuration:
+          helmVersion: 3
+          chartPath: {{ .Values.helm.chart.path }}
+          autoPublishBuildInfo: true
+
+          inputResources:
+            - name: {{ .Values.gitRepo.name }}
+          outputResources:
+            - name: "{{ .Values.pipelines.name }}_chart"
+            - name: {{ .Values.pipelines.name }}

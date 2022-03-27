@@ -1,0 +1,8 @@
+{
+  "projectKey": "${project}",
+  "key": "${project}-helm-local",
+  "rclass" : "local",
+  "packageType": "helm",
+  "repoLayoutRef" : "simple-default",
+  "xrayIndex" : "true"
+}

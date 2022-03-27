@@ -1,0 +1,9 @@
+{
+  "projectKey": "${project}",
+  "key": "${project}-helm",
+  "rclass" : "virtual",
+  "packageType": "helm",
+  "repoLayoutRef" : "simple-default",
+  "repositories": "${project}-helm-local",
+  "defaultDeploymentRepo": "${project}-helm-local"
+}
