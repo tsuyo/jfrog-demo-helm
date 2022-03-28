@@ -1,0 +1,19 @@
+template: true
+valuesFilePath: ./values-helm-deploy.yml
+      
+pipelines:
+  - name: {{ .Values.pipelines.name }}
+    steps:
+      - name: helm_deploy
+        type: HelmDeploy
+        configuration:
+          helmVersion: 3
+          flags: "-n {{ .Values.helm.chart.namespace }} --set image.name=${res_{{ .Values.pipelines.core.docker.name }}_image_imageName} --set image.tag=${res_{{ .Values.pipelines.core.docker.name }}_image_imageTag}"
+          releaseName: {{ .Values.helm.chart.name }}
+
+          integrations:
+            - name: {{ .Values.kubernetes }}
+
+          inputResources:
+            - name: "{{ .Values.pipelines.core.docker.name }}_image"
+            - name: "{{ .Values.pipelines.name }}_chart"

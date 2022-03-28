@@ -1,0 +1,10 @@
+kubernetes: kubernetes
+pipelines:
+  name: jfrog_demo_helm_deploy
+  core:
+    docker:
+      name: jfrog_demo_core_docker
+helm:
+  chart:
+    namespace: jfrog-demo
+    name: jfrog-demo
