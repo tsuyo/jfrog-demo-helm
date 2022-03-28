@@ -43,7 +43,7 @@ pipelines:
         type: HelmDeploy
         configuration:
           helmVersion: 3
-          flags: "-n {{ .Values.helm.chart.namespace }} --set image.name=${res_{{ .Values.pipelines.core.docker.name }}_imageName} --set image.tag=${res_{{ .Values.pipelines.core.docker.name }}_imageTag}"
+          flags: "-n {{ .Values.helm.chart.namespace }} --set image.name=\${res_{{ .Values.pipelines.core.docker.name }}_imageName} --set image.tag=\${res_{{ .Values.pipelines.core.docker.name }}_imageTag}"
           releaseName: {{ .Values.helm.chart.name }}
           # chartPath: {{ .Values.helm.chart.path }}
 
