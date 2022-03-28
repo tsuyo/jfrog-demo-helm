@@ -59,6 +59,6 @@ pipelines:
 
         execution:
           onStart:
-            - printf "image:\n  name: $res_jfrog_demo_core_docker_imageName\n" > /values-helm.yaml
-            - printf "  tag: $res_jfrog_demo_core_docker_imageTag\n" >> /values-helm.yaml
+            - "printf \"image:\n  name: $res_jfrog_demo_core_docker_imageName\n\" > /values-helm.yaml"
+            - "printf \"  tag: $res_jfrog_demo_core_docker_imageTag\n\" >> /values-helm.yaml"
                       
