@@ -1,4 +1,4 @@
-replicaCount: 1
+replicaCount: 3
 image:
   name: ${res_jfrog_demo_core_docker_image_imageName}
   tag: ${res_jfrog_demo_core_docker_image_imageTag}

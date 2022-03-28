@@ -1,6 +1,10 @@
 artifactory: artifactory
+kubernetes: kubernetes
 pipelines:
   name: jfrog_demo_helm
+  core:
+    docker:
+      name: jfrog_demo_core_docker
 gitRepo:
   name: jfrog_demo_helm_gitrepo
   provider: github
@@ -12,6 +16,7 @@ artifactoryRepo:
     name: demo-helm
 helm:
   chart:
+    namespace: jfrog-demo
     name: jfrog-demo
     version: 0.0.1
     path: ./jfrog-demo-chart

@@ -38,3 +38,18 @@ pipelines:
           outputResources:
             - name: "{{ .Values.pipelines.name }}_chart"
             - name: {{ .Values.pipelines.name }}
+
+      - name: helm_deploy
+        type: HelmDeploy
+        configuration:
+          helmVersion: 3
+          flags: "-n {{ .Values.helm.chart.namespace }} --set image.name=${res_{{ .Values.pipelines.core.docker.name }}_imageName} --set image.tag=${res_{{ .Values.pipelines.core.docker.name }}_imageTag"
+          releaseName: {{ .Values.helm.chart.name }}
+          # chartPath: {{ .Values.helm.chart.path }}
+
+          integrations:
+            - name: {{ .Values.kubernetes }}
+
+          inputResources:
+            - name: "{{ .Values.pipelines.core.docker.name }}_image"
+            - name: "{{ .Values.pipelines.name }}_chart"

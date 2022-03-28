@@ -19,9 +19,30 @@ $ jf rt rc --vars "project=demo" artifactory/helm.json
 ```
 
 Pipelines
-- Integrations
-  - github: GitHub
-  - artifactory: Artifactory
+- Select "demo" project -> Project Settings -> Integrations -> Add an Integration
+  - GitHub
+    - Name: github
+    - Integration Type: GitHub
+    - Token: <your github token>
+  - Artifactory
+    - Name: artifactory
+    - Integration Type: Artifactory
+    - Artifactory URL: <default on UI>
+    - User: admin
+    - API Key: <press "Get API Key">
+  - Kubernetes
+    - Name: kubernetes
+    - Integration Type: Kubernetes
+    - Kube Config: <paste jfrog-boot helm output>
+
+- Select "demo" project -> Project Settings -> Pipeline Sources -> Add Pipeline Source -> From YAML
+  - Branch Type: Single Branch
+  - Protocol Type: HTTPS
+  - Name: jfrog_demo_helm
+  - SCM Provider Integration: github
+  - Repository Full Name: tsuyo/jfrog-demo-helm
+  - Branch: main
+  - Pipeline Config File Filter: pipelines/pipelines-.+.yml
 
 ## Local Test
 ```
