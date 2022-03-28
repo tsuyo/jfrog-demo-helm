@@ -16,4 +16,4 @@ pipelines:
 
           inputResources:
             - name: "{{ .Values.pipelines.core.docker.name }}_image"
-            - name: "{{ .Values.pipelines.name }}_chart"
+            - name: "{{ .Values.pipelines.helm.publish.name }}_chart"

@@ -4,6 +4,9 @@ pipelines:
   core:
     docker:
       name: jfrog_demo_core_docker
+  helm:
+    publish:
+      name: jfrog_demo_helm_publish
 helm:
   chart:
     namespace: jfrog-demo
