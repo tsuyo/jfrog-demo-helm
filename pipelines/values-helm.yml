@@ -20,3 +20,4 @@ helm:
     name: jfrog-demo
     version: 0.0.1
     path: ./jfrog-demo-chart
+    valueFilePaths: helm-values.yaml

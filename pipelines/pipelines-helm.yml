@@ -45,6 +45,8 @@ pipelines:
           helmVersion: 3
           # flags: "-n {{ .Values.helm.chart.namespace }} --set image.name=${res_{{ .Values.pipelines.core.docker.name }}_imageName} --set image.tag=${res_{{ .Values.pipelines.core.docker.name }}_imageTag}"
           flags: "-n {{ .Values.helm.chart.namespace }}"
+          valueFilePaths:
+            - {{ .Values.helm.chart.valueFilePaths }}
           releaseName: {{ .Values.helm.chart.name }}
           # chartPath: {{ .Values.helm.chart.path }}
 
@@ -54,3 +56,7 @@ pipelines:
           inputResources:
             - name: "{{ .Values.pipelines.core.docker.name }}_image"
             - name: "{{ .Values.pipelines.name }}_chart"
+
+        execution:
+          onStart:
+            - echo "Preparing for work..."
